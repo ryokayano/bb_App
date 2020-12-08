@@ -1,21 +1,61 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import { TextInput, Button } from "react-native-paper";
+// import { save } from "./Store";
+import {
+  Table,
+  TableWrapper,
+  Row,
+  Rows,
+  Col,
+  Cols,
+  Cell,
+} from "react-native-table-component";
 
-export default function App() {
+export function Compose() {
+  const [number, setNumber] = useState("");
+  const tableHead = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+  ];
+  const tableData = [
+    ["", "", "", "","","","","","",""],
+    ["", "", "", "", "", "", "", "", "", "" ],
+  ];
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Table borderStyle={{ borderWidth: 1 }}>
+        <Row data={tableHead} />
+        <Rows data={tableData} />
+      </Table>
     </View>
   );
-}
-
+  
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 16,
+    paddingTop: 30,
+    backgroundColor: "#fff",
   },
+  head: {
+    height: 30,
+    backgroundColor: "#f1f8ff",
+  },
+  text: {
+    margin: 6,
+  },
+  
 });
