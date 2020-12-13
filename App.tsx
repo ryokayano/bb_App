@@ -1,61 +1,44 @@
-import React, { Component, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { TextInput, Button } from "react-native-paper";
-// import { save } from "./Store";
-import {
-  Table,
-  TableWrapper,
-  Row,
-  Rows,
-  Col,
-  Cols,
-  Cell,
-} from "react-native-table-component";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import "react-native-gesture-handler";
 
-export function Compose() {
-  const [number, setNumber] = useState("");
-  const tableHead = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-  ];
-  const tableData = [
-    ["", "", "", "","","","","","",""],
-    ["", "", "", "", "", "", "", "", "", "" ],
-  ];
+import { Provider as PaperProvider } from "react-native-paper";
 
+import { Cover } from "./src/Cover";
+import { Menu } from "./src/Menu";
+import { Memo } from "./src/Memo";
+import { Compose } from "./src/Compose";
+import { Score } from "./src/Score";
+import { Memory } from "./src/Memory";
+
+const Stack = createStackNavigator();
+
+export default function App() {
   return (
-    <View style={styles.container}>
-      <Table borderStyle={{ borderWidth: 1 }}>
-        <Row data={tableHead} />
-        <Rows data={tableData} />
-      </Table>
-    </View>
+    <PaperProvider>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{
+        headerStyle: {
+          backgroundColor: '#f4511e',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}
+    >
+          
+          <Stack.Screen name="BOWLING SCORE" component={Cover} />
+          <Stack.Screen name="MENU" component={Menu} />
+          <Stack.Screen name="MEMO LOG" component={Memo} />
+          <Stack.Screen name="MEMO" component={Compose} />
+          <Stack.Screen name="SCORE" component={Score} />
+          <Stack.Screen name="SCORE LOG" component={Memory} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </PaperProvider>
   );
-  
-};
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-    paddingTop: 30,
-    backgroundColor: "#fff",
-  },
-  head: {
-    height: 30,
-    backgroundColor: "#f1f8ff",
-  },
-  text: {
-    margin: 6,
-  },
-  
-});
+}

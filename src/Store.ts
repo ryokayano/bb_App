@@ -5,7 +5,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 const storage = new Storage({
   size: 1000,
   storageBackend: AsyncStorage,
-  defaultExpires: 1000 * 3600 * 24, //milliseconds 24時間
+  defaultExpires: null, //milliseconds 24時間
   enableCache: true,
 });
 // 保存処理
